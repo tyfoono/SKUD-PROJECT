@@ -14,10 +14,10 @@ byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 
 EthernetClient client;
 
-int    HTTP_PORT   = 80;
+int    HTTP_PORT   = 4567;
 String HTTP_METHOD = "GET"; // or POST
-char   HOST_NAME[] = "maker.ifttt.com";
-String PATH_NAME   = "/trigger";
+char   HOST_NAME[] = "192.168.1.153";
+String PATH_NAME   = "/david";
 
 void setup() {
   Serial.begin(9600);
