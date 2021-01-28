@@ -14,4 +14,4 @@ def david():
 
 
 if __name__ == '__main__':
-    server.run()
+    server.run(host='192.168.1.178', port=4567)
