@@ -12,6 +12,9 @@ def hello():
 def david():
     return "Hello David!"
 
+@server.route('/check')
+def check():
+    return "123"
 
 if __name__ == '__main__':
     server.run(host='192.168.1.153', port=4567)
