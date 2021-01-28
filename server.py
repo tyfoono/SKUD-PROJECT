@@ -14,6 +14,8 @@ def david():
 
 @server.route('/check')
 def check():
+    answer = dict()
+    cardID = reqest.
     return "123"
 
 if __name__ == '__main__':
