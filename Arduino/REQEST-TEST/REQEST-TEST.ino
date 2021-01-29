@@ -19,7 +19,7 @@ String HTTP_METHOD = "GET"; // or POST
 char   HOST_NAME[] = "192.168.1.153";
 String PATH_NAME   = "/h";
 String name = "John";
-String pn = PATH_NAME + "/" + name;
+String pn = PATH_NAME + "?name=" + name;
 
 void setup() {
   Serial.begin(9600);
@@ -36,7 +36,7 @@ void setup() {
     Serial.println("Connected to server");
     // make a HTTP request:
     // send HTTP header
-    client.println(HTTP_METHOD + " " + PATH_NAME + " HTTP/1.1");
+    client.println(HTTP_METHOD + " " + pn + " HTTP/1.1");
     client.println("Host: " + String(HOST_NAME));
     client.println("Connection: close");
     client.println(); // end HTTP header
