@@ -6,7 +6,7 @@ def hello():
     return "Hello World!"
 
 
-@server.route('/h/<name>')
+@server.route('/h')
 def h():
     name = "John"
     return "Hello " + name + "!"
