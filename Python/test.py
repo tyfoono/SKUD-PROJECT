@@ -10,6 +10,7 @@ def hello():
 
 @server.route('/h')
 def h():
+    name = request.args.get('name')
     return "Hello " + name + "!"
 
 
