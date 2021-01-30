@@ -24,34 +24,32 @@ int    HTTP_PORT   = 4567;
 String HTTP_METHOD = "GET"; // or POST
 char   HOST_NAME[] = "192.168.1.153";
 String ROUTE   = "/read";
-  char answer() {
-    while (client.connected()) {
-      if (client.available()) {
-        char c = client.read();
-        Serial.print(c);
-      }
+char answer() {
+  while (client.connected()) {
+    if (client.available()) {
+      char c = client.read();
+      Serial.print(c);
     }
   }
+}
 
 void sendargs(String argname, String arg) {
-  
-    String ID = stringID(uid);
+  Serial.println();
+  if (client.connect(HOST_NAME, HTTP_PORT)) {
+    Serial.println("Connected to server");
+
+    client.println(HTTP_METHOD + " " + ROUTE + argname + "?=" + arg + " HTTP/1.1");
+    client.println("Host: " + String(HOST_NAME));
+    client.println("Connection: close");
+    client.println();
+    answer();
+
+    client.stop();
     Serial.println();
-    if (client.connect(HOST_NAME, HTTP_PORT)) {
-      Serial.println("Connected to server");
-
-      client.println(HTTP_METHOD + " " + ROUTE + argname + "?=" + arg + " HTTP/1.1");
-      client.println("Host: " + String(HOST_NAME));
-      client.println("Connection: close");
-      client.println();
-      answer();
-
-      client.stop();
-      Serial.println();
-      Serial.println("disconnected");
-    } else {// if not connected:
-      Serial.println("connection failed");
-    }
+    Serial.println("disconnected");
+  } else {// if not connected:
+    Serial.println("connection failed");
+  }
 
 
 }
@@ -85,14 +83,15 @@ void loop() {
   uint8_t uid[4];
   uint8_t uidLength;
   success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength);
-  sendargs("card", ID);
-  if(success){
-    
+  if (success) {
+    String ID = stringID(uid);
+    sendargs("card", ID);
   }
+   
 }
-String stringID(uint8_t[] uid) {
-    String CardID = "";
-    for (byte i = 0; i < 4; i++)
-      CardID += String(uid[i], HEX);
-    return CardID;
-  }
+String stringID(uint8_t f[]) {
+  String CardID = "";
+  for (byte i = 0; i < 4; i++)
+    CardID += String(f[i], HEX);
+  return CardID;
+}
