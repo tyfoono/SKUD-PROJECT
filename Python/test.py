@@ -8,10 +8,11 @@ def hello():
     return "Hello World!"
 
 
-@server.route('/h')
+@server.route('/read')
 def h():
-    name = request.args.get('name')
-    return "Hello " + name + "!"
+    card = request.args.get('card')
+    print(card)
+    return "Hello " + card + "!"
 
 
 if __name__ == '__main__':

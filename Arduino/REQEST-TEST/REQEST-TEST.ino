@@ -18,7 +18,7 @@ int    HTTP_PORT   = 4567;
 String HTTP_METHOD = "GET"; // or POST
 char   HOST_NAME[] = "192.168.1.153";
 String PATH_NAME   = "/h";
-String name = " ";
+String name = "qwe";
 String pn = PATH_NAME + "?name=" + name;
 
 void setup() {
@@ -29,7 +29,6 @@ void setup() {
     Serial.println("Failed to obtaining an IP address using DHCP");
     while(true);
   }
-  name = Serial.readString();
   // connect to web server on port 80:
   if(client.connect(HOST_NAME, HTTP_PORT)) {
     // if connected:
