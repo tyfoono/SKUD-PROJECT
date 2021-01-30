@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request
 server = Flask(__name__)
 
+name = "John"
+
 @server.route('/')
 def hello():
     return "Hello World!"
@@ -8,7 +10,6 @@ def hello():
 
 @server.route('/h')
 def h():
-    name = ""
     return "Hello " + name + "!"
 
 
