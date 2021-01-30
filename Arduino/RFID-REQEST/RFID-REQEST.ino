@@ -60,14 +60,8 @@ void loop() {
     if (client.connect(HOST_NAME, HTTP_PORT)) {
       Serial.println("Connected to server");
 
-      sendargs("card", ID");
-      
-      while (client.connected()) {
-        if (client.available()) {
-          char c = client.read();
-          Serial.print(c);
-        }
-      }
+      sendargs("card", ID);
+      answer();
 
       client.stop();
       Serial.println();
@@ -96,4 +90,11 @@ void sendargs(String argname, String arg) {
   client.println();
 }
 
-//Функция получения данных, возвращая тело ответа в формате String (char)
+char answer() {
+  while (client.connected()) {
+    if (client.available()) {
+      char c = client.read();
+      Serial.print(c);
+    }
+  }
+}
