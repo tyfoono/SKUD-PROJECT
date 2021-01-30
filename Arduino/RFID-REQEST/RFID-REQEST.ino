@@ -54,13 +54,34 @@ void loop() {
   uint8_t uid[4];
   uint8_t uidLength;
   success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength);
+
+  String stringID(uint8_t[] uid) {
+    String CardID = "";
+    for (byte i = 0; i < 4; i++)
+      CardID += String(uid[i], HEX);
+    return CardID;
+  }
+  char answer() {
+    while (client.connected()) {
+      if (client.available()) {
+        char c = client.read();
+        Serial.print(c);
+      }
+    }
+  }
+}
+
+void sendargs(String argname, String arg) {
   if (success) {
     String ID = stringID(uid);
     Serial.println();
     if (client.connect(HOST_NAME, HTTP_PORT)) {
       Serial.println("Connected to server");
 
-      sendargs("card", ID);
+      client.println(HTTP_METHOD + " " + ROUTE + argname + "?=" + arg + " HTTP/1.1");
+      client.println("Host: " + String(HOST_NAME));
+      client.println("Connection: close");
+      client.println();
       answer();
 
       client.stop();
@@ -70,31 +91,6 @@ void loop() {
       Serial.println("connection failed");
     }
 
-
-
   }
 
-}
-
-String stringID(uint8_t[] uid) {
-  String CardID = "";
-  for (byte i = 0; i < 4; i++)
-    CardID += String(uid[i], HEX);
-  return CardID;
-}
-
-void sendargs(String argname, String arg) {
-  client.println(HTTP_METHOD + " " + ROUTE + argname + "?=" + arg + " HTTP/1.1");
-  client.println("Host: " + String(HOST_NAME));
-  client.println("Connection: close");
-  client.println();
-}
-
-char answer() {
-  while (client.connected()) {
-    if (client.available()) {
-      char c = client.read();
-      Serial.print(c);
-    }
-  }
 }
