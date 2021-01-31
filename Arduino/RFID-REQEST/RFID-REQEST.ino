@@ -47,12 +47,12 @@ void sendargs(String argname, String arg) {
     client.println();
     client.stop();
     String a = answer();
+    bool q = anscheck(a);
     Serial.println();
     Serial.println(a);
     Serial.println("disconnected");
-  } else {
+  } else
     Serial.println("connection failed");
-  }
 }
 
 void setup() {
@@ -95,12 +95,13 @@ String stringID(uint8_t f[]) {
   return CardID;
 }
 //функция открытия/закрытия дверей
-void door(bool b){
-  
+void door(bool b) {
+  if(b){}
+  else{}
 }
 //bool функция проверки ответа получаящая на вход ответ
-bool anscheck(String answ){
-  if(answ == "Проходите")
+bool anscheck(String answ) {
+  if (answ == "Проходите")
     return true;
   else
     return false;
