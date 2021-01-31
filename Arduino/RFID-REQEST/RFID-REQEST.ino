@@ -24,13 +24,15 @@ int    HTTP_PORT   = 4567;
 String HTTP_METHOD = "GET"; // or POST
 char   HOST_NAME[] = "192.168.1.153";
 String ROUTE   = "/read";
-char answer() {
+String answer() {
+  String ans = "";
   while (client.connected()) {
     if (client.available()) {
       char c = client.read();
-      Serial.print(c);
+      ans += c;
     }
   }
+  return ans;
 }
 
 void sendargs(String argname, String arg) {
@@ -95,3 +97,5 @@ String stringID(uint8_t f[]) {
     CardID += String(f[i], HEX);
   return CardID;
 }
+//bool функция проверки ответа получаящая на вход ответ
+//функция открытия/закрытия дверей
