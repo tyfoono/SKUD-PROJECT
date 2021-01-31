@@ -15,13 +15,12 @@
 
 Adafruit_PN532 nfc(PN532_IRQ, 100);
 
-// replace the MAC address below by the MAC address printed on a sticker on the Arduino Shield 2
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 
 EthernetClient client;
 
 int    HTTP_PORT   = 4567;
-String HTTP_METHOD = "GET"; // or POST
+String HTTP_METHOD = "GET"; //POST
 char   HOST_NAME[] = "192.168.1.153";
 String ROUTE   = "/read";
 String answer() {
@@ -49,7 +48,7 @@ void sendargs(String argname, String arg) {
     client.stop();
     Serial.println();
     Serial.println("disconnected");
-  } else {// if not connected:
+  } else {
     Serial.println("connection failed");
   }
 
@@ -58,8 +57,6 @@ void sendargs(String argname, String arg) {
 
 void setup() {
   Serial.begin(9600);
-
-  // initialize the Ethernet shield using DHCP:
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to obtaining an IP address using DHCP");
     while (true);
@@ -74,7 +71,6 @@ void setup() {
   }
 
   Serial.println("Found RFID/NFC reader");
-  // настраиваем модуль
   nfc.SAMConfig();
   Serial.println("Waiting for a card ...");
 
