@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 server = Flask(__name__)
 
-cards = [1, 3, 6, 9, 10]
+cards = []
 
 @server.route('/')
 def hello():
@@ -12,10 +12,11 @@ def h():
     card = request.args.get('card')
     print(card)
     if card in cards:
-        return "Проходите"
+        answer = "Проходите"
     else:
-        return "Прохода нет"
-
+        answer = "Прохода нет"
+    return answer
+    
 if __name__ == '__main__':
     #192.168.1.153
     server.run(host='192.168.0.75', port=4567)
