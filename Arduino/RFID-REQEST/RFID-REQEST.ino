@@ -35,6 +35,7 @@ String answer() {
   }
   return ans;
 }
+String a = answer();
 //функия отправки информации
 void sendargs(String argname, String arg) {
   if (client.connect(HOST_NAME, HTTP_PORT)) {
@@ -44,10 +45,9 @@ void sendargs(String argname, String arg) {
     client.println("Host: " + String(HOST_NAME));
     client.println("Connection: close");
     client.println();
-    answer();
-
     client.stop();
     Serial.println();
+    Serial.println(a);
     Serial.println("disconnected");
   } else {
     Serial.println("connection failed");
@@ -94,4 +94,12 @@ String stringID(uint8_t f[]) {
   return CardID;
 }
 //функция открытия/закрытия дверей
+
 //bool функция проверки ответа получаящая на вход ответ
+bool anscheck(String answ){
+  if(answ == "Проходите"){
+    return true;
+  }else{
+    return false;
+  }
+}
