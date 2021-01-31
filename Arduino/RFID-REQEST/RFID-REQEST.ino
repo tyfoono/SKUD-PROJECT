@@ -23,6 +23,8 @@ int    HTTP_PORT   = 4567;
 String HTTP_METHOD = "GET"; //POST
 char   HOST_NAME[] = "192.168.1.153";
 String ROUTE   = "/read";
+
+//функция получения ответа
 String answer() {
   String ans = "";
   while (client.connected()) {
@@ -33,9 +35,8 @@ String answer() {
   }
   return ans;
 }
-
+//функия отправки информации
 void sendargs(String argname, String arg) {
-  Serial.println();
   if (client.connect(HOST_NAME, HTTP_PORT)) {
     Serial.println("Connected to server");
 
@@ -51,8 +52,6 @@ void sendargs(String argname, String arg) {
   } else {
     Serial.println("connection failed");
   }
-
-
 }
 
 void setup() {
@@ -85,13 +84,14 @@ void loop() {
     String ID = stringID(uid);
     sendargs("card", ID);
   }
-   
+
 }
+//перевод ID карты в строку
 String stringID(uint8_t f[]) {
   String CardID = "";
   for (byte i = 0; i < 4; i++)
     CardID += String(f[i], HEX);
   return CardID;
 }
-//bool функция проверки ответа получаящая на вход ответ
 //функция открытия/закрытия дверей
+//bool функция проверки ответа получаящая на вход ответ
