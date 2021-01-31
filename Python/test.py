@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 server = Flask(__name__)
 
-cards = []
+cards = [1, 3, 6, 9, 10]
 
 @server.route('/')
 def hello():
