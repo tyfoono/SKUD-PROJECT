@@ -10,10 +10,6 @@ def hello():
 @server.route('/read')
 def h():
     card = request.args.get('card')
-    if card in cards:
-        print("Проход разрешён")
-    else:
-        print("Проход запрещёнЫ")
     print(card)
     return card
 
