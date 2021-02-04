@@ -1,6 +1,6 @@
 from flask import Flask, request
 server = Flask(__name__)
-db = open("cards.txt", "r")
+db = open("data/cards.txt", "r")
 print(db.readline(1))
 @server.route('/')
 def hello():
