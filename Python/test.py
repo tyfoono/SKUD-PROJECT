@@ -12,10 +12,12 @@ def read():
     cards = [10, 1, 3, 2]
     card = request.args.get('card')
     print(card)
+    #эта проверка не работает
     if card in cards:
         return "Проходите"
     else:
         return "Прохода нет"
+    ''''''
 
 if __name__ == '__main__':
     #192.168.1.153
