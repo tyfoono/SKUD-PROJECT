@@ -1,7 +1,7 @@
 from flask import Flask, request
 server = Flask(__name__)
 
-cards = [10, 1, 3, 2]
+
 
 @server.route('/')
 def hello():
@@ -9,9 +9,13 @@ def hello():
 
 @server.route('/read')
 def h():
+    cards = [10, 1, 3, 2]
     card = request.args.get('card')
     print(card)
-    return card
+    if card in cards:
+        return "Проходите"
+    else:
+        return "Прохода нет"
 
 if __name__ == '__main__':
     #192.168.1.153
