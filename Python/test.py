@@ -8,7 +8,7 @@ def hello():
     return "Hello World!"
 
 @server.route('/read')
-def h():
+def read():
     cards = [10, 1, 3, 2]
     card = request.args.get('card')
     print(card)
