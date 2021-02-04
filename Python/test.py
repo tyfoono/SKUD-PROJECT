@@ -1,8 +1,6 @@
 from flask import Flask, request
 server = Flask(__name__)
 
-# 
-
 @server.route('/')
 def hello():
     return "Hello World!"
@@ -20,7 +18,7 @@ def read():
     """
     Проблема именно в проверке.
     ID карты считывается правильно.
-    Либо не код не видит список, либо проблема в коде 
+    Видимо, код не видит список 
     """
 
 if __name__ == '__main__':
