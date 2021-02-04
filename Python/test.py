@@ -7,7 +7,7 @@ def hello():
 
 @server.route('/read')
 def read():
-    cards = ["10", "1", "3", "2"]
+    cards = ["138e25d8", "337c28d8", "3", "2"]
     card = request.args.get('card')
     print("ID карты:", card)
     #Эта проверка работает. Проблема была в типе данных
@@ -19,4 +19,4 @@ def read():
 
 if __name__ == '__main__':
     #192.168.1.153
-    server.run(host='192.168.0.75', port=4567)
+    server.run(host='192.168.1.153', port=4567)
