@@ -10,7 +10,7 @@ def read():
     cards = [10, 1, 3, 2]
     card = request.args.get('card')
     print("ID карты:", card)
-    #эта проверка не работает
+    #Эта проверка не работает. Всегда выдаёт "Прохода нет"
     if card in cards:
         return "Проходите"
     else:
