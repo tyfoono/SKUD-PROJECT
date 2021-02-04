@@ -7,7 +7,7 @@ def hello():
 
 @server.route('/read')
 def read():
-    cards = [10, 1, 3, 2]
+    cards = ["10", "1", "3", "2"]
     card = request.args.get('card')
     print("ID карты:", card)
     #Эта проверка не работает. Всегда выдаёт "Прохода нет"
